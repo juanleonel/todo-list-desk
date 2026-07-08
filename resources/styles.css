@@ -52,17 +52,15 @@ li {
     padding: 10px;
     border-bottom: 1px solid #eee;
     display: flex;
-    align-items: center; /* Alinea verticalmente el checkbox y el texto */
+    align-items: center;
     gap: 10px;
 }
 
-/* Estilo para cuando la tarea está completada */
 li.completed span {
     text-decoration: line-through;
     color: #888;
 }
 
-/* Checkbox personalizado un poco más grande */
 input[type="checkbox"] {
     transform: scale(1.2);
     cursor: pointer;
@@ -70,5 +68,5 @@ input[type="checkbox"] {
 
 .delete-btn {
     background-color: #ff4d4d;
-    margin-left: auto; /* Empuja el botón a la derecha */
+    margin-left: auto;
 }
