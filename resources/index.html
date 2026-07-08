@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>To-Do List - Neutralino.js</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📝 Mi Lista de Tareas</h1>
+        
+        <div class="input-section">
+            <input type="text" id="taskInput" placeholder="Escribe una nueva tarea...">
+            <button id="addBtn" onclick="addTask()">Agregar</button>
+        </div>
+
+        <ul id="taskList"></ul>
+
+        <div class="stats">
+            <p>Total: <span id="totalCount">0</span> | 
+               Pendientes: <span id="pendingCount">0</span> | 
+               Completadas: <span id="completedCount">0</span></p>
+        </div>
+    </div>
+
+    <script src="js/neutralino.js"></script>
+    <script src="js/sql-wasm.js"></script> 
+    <script type="module" src="js/config.js"></script>
+    <script type="module" src="js/app.constants.js"></script>
+    <script type="module" src="js/utils.functions.js"></script>
+    <script type="module" src="js/main.js"></script>
+</body>
+</html>
