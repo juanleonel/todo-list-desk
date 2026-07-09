@@ -2,26 +2,34 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>To-Do List - Neutralino.js</title>
-    <link rel="stylesheet" href="./css/styles.css">
+    <title>To-Do List</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
+    <button id="langToggleBtn" class="lang-btn" onclick="toggleLanguage()">EN</button>
+
     <div class="container">
-        <h1>Task list</h1>
+        <h1 data-i18n="app.title">Mi Lista de Tareas</h1>
+        
         <div class="input-section">
-            <input type="text" id="taskInput" placeholder="Escribe una nueva tarea...">
-            <button id="addBtn" onclick="addTask()">Agregar</button>
+            <input type="text" id="taskInput" data-i18n="input.placeholder" placeholder="Escribe una nueva tarea...">
+            <button id="addBtn" onclick="addTask()" data-i18n="btn.add">Agregar</button>
         </div>
+
         <ul id="taskList"></ul>
+
         <div class="stats">
-            <p>Total: <span id="totalCount">0</span> | 
-               Pendientes: <span id="pendingCount">0</span> | 
-               Completadas: <span id="completedCount">0</span></p>
+            <p>
+                <span data-i18n="stats.total">Total</span>: <span id="totalCount">0</span> | 
+                <span data-i18n="stats.pending">Pendientes</span>: <span id="pendingCount">0</span> | 
+                <span data-i18n="stats.completed">Completadas</span>: <span id="completedCount">0</span>
+            </p>
         </div>
     </div>
 
     <script src="js/neutralino.js"></script>
-    <script src="js/sql-wasm.js"></script> 
+    <script src="js/sql-wasm.js"></script>
+    <script type="module" src="js/i18n.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>
 </html>

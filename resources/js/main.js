@@ -1,9 +1,14 @@
+import { initI18n, translated as t, toggleLanguage } from './i18n.js';
+
 import { AppConstants } from './constants/app.constants.js';
 import { createTable, getAllTasks, insertTask, updateTaskStatus, removeTask } from './task.dao.js'
 import { config } from './config.js'
 import { initConnection } from './sqljs-connection.js';
 
 Neutralino.init();
+
+window.toggleLanguage = toggleLanguage;
+
 
 async function startApp() {
    try {
@@ -13,6 +18,7 @@ async function startApp() {
             homePath: homePath
         });
         createTable();
+        await initI18n(); 
         renderTasks(getAllTasks());
     } catch (error) {
         console.error('Error to start the application:', error);
@@ -27,6 +33,7 @@ function addTask() {
         insertTask(taskText);
         input.value = AppConstants.stringEmpty;
         renderTasks(getAllTasks());
+        Neutralino.os.showMessageBox(t('app.title'), t('msg.taskAdded'));
     }
 }
 
@@ -35,7 +42,17 @@ function toggleTask(id) {
     renderTasks(getAllTasks());
 }
 
-function deleteTask(id) {
+async function deleteTask(id) {
+    const result = await Neutralino.os.showMessageBox(
+        t('app.title'),
+        t('msg.confirmDelete'),
+        'YES_NO', 'QUESTION'
+    );
+
+    if (result == AppConstants.confirmResult.no) {
+        return
+    }
+
     removeTask(id);
     renderTasks(getAllTasks());
 }
@@ -43,6 +60,7 @@ function deleteTask(id) {
 function renderTasks(tasks) {
     const list = document.getElementById('taskList');
     list.innerHTML = AppConstants.stringEmpty;
+    const deleteLabel = t('btn.delete') || 'Eliminar'; 
 
     tasks.forEach(task => {
         const li = document.createElement('li');
@@ -51,19 +69,19 @@ function renderTasks(tasks) {
             li.classList.add('completed');
         }
 
-        li.innerHTML = buildElementsForLiTag(task)
+        li.innerHTML = buildElementsForLiTag(task, { deleteLabel: deleteLabel })
         list.appendChild(li);
     });
 
     updateStats(tasks);
 }
 
-function buildElementsForLiTag(task) {
+function buildElementsForLiTag(task, options = { deleteLabel }) {
     return `<input type='checkbox' 
         ${task.completed ? 'checked' : AppConstants.stringEmpty} 
         onchange='toggleTask(${task.id})'>
         <span>${task.text}</span>
-    <button class='delete-btn' onclick='deleteTask(${task.id})'>Eliminar</button>
+    <button class='delete-btn' onclick='deleteTask(${task.id})'>${ options.deleteLabel }</button>
     `
 }
 

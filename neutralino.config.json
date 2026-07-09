@@ -18,7 +18,8 @@
     "os.*",
     "debug.log",
     "filesystem.readBinaryFile",
-    "filesystem.writeBinaryFile"
+    "filesystem.writeBinaryFile",
+    "storage.*" 
   ],
   "globalVariables": {
     "TEST1": "Hello",
