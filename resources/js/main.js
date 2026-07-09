@@ -1,6 +1,7 @@
-import { initConnection } from './sqljs-connection.js';
-import { createTable, getAllTasks, insertTask, updateTaskStatus, removeTask } from './task.dao.js'
 import { AppConstants } from './constants/app.constants.js';
+import { createTable, getAllTasks, insertTask, updateTaskStatus, removeTask } from './task.dao.js'
+import { config } from './config.js'
+import { initConnection } from './sqljs-connection.js';
 
 Neutralino.init();
 
@@ -8,13 +9,13 @@ async function startApp() {
    try {
         const homePath = await Neutralino.os.getEnv("HOME");
         await initConnection({
-            dbName: 'todolist.db',
+            dbName: config.dataBaseName,
             homePath: homePath
         });
         createTable();
         renderTasks(getAllTasks());
     } catch (error) {
-        console.error('Error crítico al iniciar:', error);
+        console.error('Error to start the application:', error);
     }
 }
 
@@ -50,22 +51,27 @@ function renderTasks(tasks) {
             li.classList.add('completed');
         }
 
-        li.innerHTML = `
-            <input type='checkbox' 
-                   ${task.completed ? 'checked' : ''} 
-                   onchange='toggleTask(${task.id})'>
-            <span>${task.text}</span>
-            <button class='delete-btn' onclick='deleteTask(${task.id})'>Eliminar</button>
-        `;
+        li.innerHTML = buildElementsForLiTag(task)
         list.appendChild(li);
     });
 
     updateStats(tasks);
 }
 
+function buildElementsForLiTag(task) {
+    return `<input type='checkbox' 
+        ${task.completed ? 'checked' : AppConstants.stringEmpty} 
+        onchange='toggleTask(${task.id})'>
+        <span>${task.text}</span>
+    <button class='delete-btn' onclick='deleteTask(${task.id})'>Eliminar</button>
+    `
+}
+
 function updateStats(tasks) {
     const total = tasks.length;
-    const completed = tasks.filter(t => t.completed).length;
+    const completed = tasks.filter(task => {
+        return task.completed
+    }).length;
     document.getElementById('totalCount').innerText = total;
     document.getElementById('pendingCount').innerText = total - completed;
     document.getElementById('completedCount').innerText = completed;

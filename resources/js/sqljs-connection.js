@@ -1,3 +1,4 @@
+import { config } from './config.js';
 import { isNullOrUndefined, isStringEmpty } from './utils.functions.js'
 
 let dbInstance = null;
@@ -45,15 +46,13 @@ export function getDB() {
 }
 
 export function scheduleSaveWithDebounce() {
-  const timeOut = 500;
-
   if (saveTimeout) {
     clearTimeout(saveTimeout);
   }
 
   saveTimeout = setTimeout(() => {
     persistToDisk();
-  }, timeOut);
+  }, config.schedulerimeOut);
 }
 
 async function persistToDisk() {
