@@ -1,0 +1,16 @@
+{
+  "app.title": "Mi Lista de Tareas",
+  "input.placeholder": "Escribe una nueva tarea...",
+  "btn.add": "Agregar",
+  "btn.delete": "Eliminar",
+  "stats.total": "Total",
+  "stats.pending": "Pendientes",
+  "stats.completed": "Completadas",
+  "msg.taskAdded": "Tarea agregada correctamente",
+  "toast.emptyTask": "Por favor escribe una tarea",
+  "msg.confirmDelete": "¿Estás seguro de eliminar esta tarea?",
+  "btn.yes": "Sí",
+  "btn.no": "No",
+  "btn.lang.es": "ES",
+  "btn.lang.en": "EN"
+}

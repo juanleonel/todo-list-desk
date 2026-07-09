@@ -1,0 +1,16 @@
+{
+  "app.title": "My To-Do List",
+  "input.placeholder": "Write a new task...",
+  "btn.add": "Add",
+  "btn.delete": "Delete",
+  "stats.total": "Total",
+  "stats.pending": "Pending",
+  "stats.completed": "Completed",
+  "msg.taskAdded": "Task added successfully",
+  "toast.emptyTask": "Please write a task",
+  "msg.confirmDelete": "Are you sure you want to delete this task?",
+  "btn.yes": "Yes",
+  "btn.no": "No",
+  "btn.lang.es": "ES",
+  "btn.lang.en": "EN"
+}
