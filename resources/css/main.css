@@ -1,0 +1,176 @@
+/* =========================================
+   MAIN.CSS - Componentes de la App
+   ========================================= */
+
+/* --- Layout Principal --- */
+.container {
+  background: var(--bg-card);
+  padding: 2rem;
+  padding-top: 3.5rem;
+  border-radius: var(--radius-md);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 400px;
+  max-width: 90vw;
+  position: relative;
+}
+
+#langToggleBtn.lang-btn {
+  position: fixed;
+  top: 15px; right: 15px;
+  background-color: var(--color-lang);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10000;
+  transition: background-color 0.2s ease;
+  font-family: inherit;
+}
+
+#langToggleBtn.lang-btn:hover { background-color: #34495e; }
+
+.about-link {
+  background: none; border: none; font-size: 1.2rem;
+  cursor: pointer; opacity: 0.6; padding: 5px;
+  transition: opacity 0.2s; vertical-align: middle;
+}
+
+.about-link:hover { opacity: 1; }
+
+.input-section { display: flex; gap: 10px; margin-bottom: 20px; }
+
+input[type="text"] {
+  flex-grow: 1;
+  padding: 10px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+}
+
+input[type="text"]:focus { border-color: var(--color-primary); }
+
+button:not(.lang-btn):not(.about-link) {
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  font-family: inherit;
+  transition: background-color 0.2s ease;
+}
+
+button:not(.lang-btn):not(.about-link):hover { background-color: var(--color-primary-hover); }
+
+#taskList { list-style: none; margin: 0 0 20px 0; }
+
+li {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--border-color);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background-color 0.15s;
+}
+
+li:last-child { border-bottom: none; }
+
+li:hover { background-color: var(--hover-bg); }
+
+li.completed span { text-decoration: line-through; color: var(--text-secondary); }
+
+input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+  accent-color: var(--color-primary);
+}
+
+.delete-btn {
+  background-color: var(--color-danger);
+  margin-left: auto;
+  padding: 6px 14px;
+  font-size: 12px;
+}
+
+.delete-btn:hover { background-color: var(--color-danger-hover); }
+
+.stats {
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-color);
+}
+
+.stats span { font-weight: 600; color: var(--text-primary); }
+
+.modal-overlay {
+  position: fixed; inset: 0;
+  background-color: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px); /* GTK/Safari */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.about-box {
+  background-color: var(--bg-card);
+  padding: 32px 40px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--border-color);
+  min-width: 300px;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.about-box h2 {
+  margin: 0 0 24px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.about-info {
+  margin-bottom: 28px;
+  font-size: 0.875rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.about-info p { margin: 4px 0; }
+
+.about-info strong { color: var(--text-primary); font-weight: 500; }
+
+#closeAboutBtn.btn-secondary {
+  width: 100%;
+  padding: 10px;
+  background-color: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+
+#closeAboutBtn.btn-secondary:hover {
+  background-color: var(--hover-bg);
+  color: var(--text-primary);
+  border-color: var(--text-secondary);
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }

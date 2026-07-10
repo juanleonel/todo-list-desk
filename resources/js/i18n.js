@@ -1,4 +1,5 @@
 import { AppConstants } from './constants/app.constants.js';
+import { isNullOrUndefined } from './utils.functions.js';
 
 let translations = {};
 let currentLang = AppConstants.currentLang;
@@ -12,10 +13,15 @@ export async function initI18n() {
     currentLang = AppConstants.currentLang;
   }
 
-  console.log('currentLang ', currentLang)
-
   await loadLanguage(currentLang);
+}
 
+export function getCurrentLang() {
+  if (isNullOrUndefined(currentLang)) {
+    return AppConstants.currentLang;
+  }
+
+  return currentLang;
 }
 
 async function loadLanguage(lang) {
@@ -35,7 +41,6 @@ function applyTranslations() {
     const key = el.getAttribute('data-i18n');
 
     if (translations[key]) {
-       console.log(el.tagName)
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'BUTTON') {
         el.placeholder = translations[key];
       } else {

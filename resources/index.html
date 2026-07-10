@@ -4,9 +4,29 @@
     <meta charset="UTF-8">
     <title>To-Do List</title>
     <link rel="stylesheet" href="css/styles.css">
+    <!-- <link rel="stylesheet" href="css/system.css">
+    <link rel="stylesheet" href="css/main.css"> -->
 </head>
 <body>
-    <button id="langToggleBtn" class="lang-btn" onclick="toggleLanguage()">EN</button>
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal-overlay" style="display:none;">
+        <div class="modal-box about-box">
+            <h2 data-i18n="about.title">Acerca de To-Do List</h2>
+            <div class="about-info">
+                <p><strong data-i18n="about.version">Versión</strong>: <span id="appVersion">-</span></p>
+                <p><strong data-i18n="about.author">Desarrollado por</strong>: Juan L.</p>
+                <p><strong data-i18n="about.os">Sistema</strong>: <span id="appOS">-</span></p>
+                <p><strong data-i18n="about.license">Licencia</strong>: MIT</p>
+            </div>
+            <button id="closeAboutBtn" class="btn-secondary" data-i18n="about.close">Cerrar</button>
+        </div>
+    </div>
+
+    <!-- En index.html, dentro de .stats o cerca del lang-btn -->
+    <div>
+        <button id="langToggleBtn" class="lang-btn" onclick="changeLanguage()">EN</button>
+        <button onclick="toggleAboutModal(true)" class="about-link" title="Acerca de">ℹ️</button>
+    </div>
 
     <div class="container">
         <h1 data-i18n="app.title">Mi Lista de Tareas</h1>

@@ -12,5 +12,12 @@
   "btn.yes": "Sí",
   "btn.no": "No",
   "btn.lang.es": "ES",
-  "btn.lang.en": "EN"
+  "btn.lang.en": "EN",
+  "menu.about": "Acerca de",
+  "about.title": "Acerca de To-Do List",
+  "about.version": "Versión",
+  "about.author": "Desarrollado por",
+  "about.license": "Licencia",
+  "about.close": "Cerrar",
+  "about.os": "S.O"
 }

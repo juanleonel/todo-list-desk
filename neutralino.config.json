@@ -1,7 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/neutralinojs/neutralinojs/main/schemas/neutralino.config.schema.json",
-  "applicationId": "js.neutralino.sample",
+  "applicationId": "com.juanl.todolist",
   "version": "1.0.0",
+  "description": "Gestor de tareas multiplataforma con SQLite",
+  "author": "Juan L.",
+  "license": "MIT",
   "defaultMode": "window",
   "port": 0,
   "documentRoot": "/resources/",

@@ -1,14 +1,12 @@
-import { initI18n, translated as t, toggleLanguage } from './i18n.js';
-
 import { AppConstants } from './constants/app.constants.js';
-import { createTable, getAllTasks, insertTask, updateTaskStatus, removeTask } from './task.dao.js'
+import { getCurrentLang, initI18n, translated as t, toggleLanguage } from './i18n.js';
 import { config } from './config.js'
+import { createTable, getAllTasks, insertTask, updateTaskStatus, removeTask } from './task.dao.js'
 import { initConnection } from './sqljs-connection.js';
 
 Neutralino.init();
 
 window.toggleLanguage = toggleLanguage;
-
 
 async function startApp() {
    try {
@@ -20,6 +18,14 @@ async function startApp() {
         createTable();
         await initI18n(); 
         renderTasks(getAllTasks());
+
+         document.getElementById('closeAboutBtn').addEventListener('click', () => {
+            toggleAboutModal(false);
+        });
+
+        document.getElementById('aboutModal').addEventListener('click', (e) => {
+            if (e.target.id === 'aboutModal') toggleAboutModal(false);
+        });
     } catch (error) {
         console.error('Error to start the application:', error);
     }
@@ -33,7 +39,6 @@ function addTask() {
         insertTask(taskText);
         input.value = AppConstants.stringEmpty;
         renderTasks(getAllTasks());
-        Neutralino.os.showMessageBox(t('app.title'), t('msg.taskAdded'));
     }
 }
 
@@ -95,8 +100,31 @@ function updateStats(tasks) {
     document.getElementById('completedCount').innerText = completed;
 }
 
+function changeLanguage() {
+    toggleLanguage()
+    const langToggleBtn = document.getElementById('langToggleBtn');
+
+    if (!langToggleBtn) {
+        return;
+    }
+
+    langToggleBtn.textContent = getCurrentLang().toUpperCase();
+}
+
+function toggleAboutModal(show) {
+    const modal = document.getElementById('aboutModal');
+    modal.style.display = show ? 'flex' : 'none';
+    
+    if (show) {
+        document.getElementById('appVersion').textContent = NL_APPVERSION || '1.0.0';
+        document.getElementById('appOS').textContent = `${NL_OS} (${NL_ARCH})`;
+    }
+}
+
 window.toggleTask = toggleTask;
 window.deleteTask = deleteTask;
 window.addTask = addTask;
+window.changeLanguage = changeLanguage;
+window.toggleAboutModal = toggleAboutModal;
 
 startApp();
